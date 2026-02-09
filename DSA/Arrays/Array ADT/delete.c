@@ -29,13 +29,18 @@ void insert(struct Array *arr,int index, int a){
     }
 }
 
-void delete(struct Array *arr,int index){
-    arr->A[index] = 0;
+int delete(struct Array *arr,int index){
+    int x =0;
     int i;
-    for(i=index;i<arr->length;i++){
-        arr->A[i]=arr->A[i+1];
+    if(index>=0 && index<arr->length){
+        x = arr->length;
+        for(i=index;i<arr->length;i++){
+            arr->A[i]=arr->A[i+1];
+        }
+        arr->length--;
+        return x;
     }
-    arr->length--;
+    return 0;
 }
 
 void Display(struct Array arr){
