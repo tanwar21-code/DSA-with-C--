@@ -112,5 +112,6 @@ int main(){
     }
     Display(arr);
     return 0;
-
+    // And the height of the tracing tree of binary search is log(n)
+    // height of tracing tree shows the worst case time for binary search
 }
