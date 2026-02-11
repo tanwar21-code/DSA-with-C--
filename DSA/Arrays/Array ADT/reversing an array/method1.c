@@ -141,10 +141,10 @@ int Avg(struct Array *arr){
     return sum_recursion(arr, arr->length) / arr->length;
 }
 
-int reverse(struct Array *arr){
+void reverse(struct Array *arr){
     int i ,j;
     int B[arr->length];
-    for (i=arr->length-1,j=0;i<=0;i--,j++){
+    for (i=arr->length-1,j=0;i>=0;i--,j++){
         B[j] = arr->A[i];
     }
     for(i=0;i<arr->length;i++){
