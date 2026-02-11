@@ -1,0 +1,184 @@
+// Finding sum
+
+#include<stdio.h>
+#include<stdlib.h>
+struct Array{
+    int A[20];
+    int size;
+    int length;
+};
+
+void Add(struct Array *arr,int a){
+    if(arr->length < arr->size){
+        arr->A[arr->length] = a;
+        arr->length++;
+    } else {
+        printf("Array is full, cannot add %d\n", a);
+    }
+}
+
+void insert(struct Array *arr,int index, int a){
+    if(index<= arr->length && index >=0)
+        {int i;
+        for (i=arr->length;i>index;i--){
+            arr->A[i]=arr->A[i-1];
+        }
+        arr->A[index]=a;
+        arr->length++;    
+    }
+}
+
+int delete(struct Array *arr,int index){
+    int x = 0;
+    int i;
+    if(index>=0 && index < arr->length){
+        x = arr->A[index];
+        for(i = index; i < arr->length - 1; i++){
+            arr->A[i] = arr->A[i+1];
+        }
+        arr->length--;
+        return x;
+    }
+    return 0;
+}
+
+void swap(int *a,int *b){
+    int temp;
+    temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int linear_search(struct Array *arr,int key){
+    int i;
+    for(i=0;i<arr->length;i++){
+        if(arr->A[i]==key){
+            if (i>0){
+                return i;
+            }
+            return i;
+        }
+        else{
+            continue;
+        }
+    }
+    return -1;
+}
+
+int Binary_search(struct Array *arr,int key){
+    int low = 0, high = arr->length - 1;
+    int mid;
+    while(low <= high){
+        mid = (low + high) / 2;
+        if(arr->A[mid] == key)
+            return mid;
+        if(key < arr->A[mid])
+            high = mid - 1;
+        else
+            low = mid + 1;
+    }
+    return -1;
+}
+
+int get(struct Array *arr,int index){
+    if(index>= 0 && index<=arr->length){
+        return arr->A[index];
+    }
+}
+
+int set(struct Array *arr,int index,int x){
+    if(index>= 0 && index<=arr->length){
+        arr->A[index]=x;
+    }
+}
+
+int max(struct Array *arr){
+    int max=arr->A[0];
+    int i;
+    for (i =0;i<arr->length;i++){
+        if (arr->A[i]>max){
+            max = arr->A[i];
+        }
+        
+    }
+    return max;
+
+}
+
+int min(struct Array *arr){
+    int min=arr->A[0];
+    int i;
+    for (i =0;i<arr->length;i++){
+        if (arr->A[i]<min){
+            min = arr->A[i];
+        }
+        
+    }
+    return min;
+
+}
+
+int sum(struct Array *arr){
+    int total = 0;
+    int i;
+    for (i =0;i<arr->length;i++){
+        total += arr->A[i];
+        
+    }
+    return total;
+
+}
+
+int sum_recursion(struct Array *arr, int n){
+    if(n <= 0)
+        return 0;
+    return sum_recursion(arr, n - 1) + arr->A[n - 1];
+}
+
+int Avg(struct Array *arr){
+    if(arr->length == 0)
+        return 0;
+    return sum_recursion(arr, arr->length) / arr->length;
+}
+
+void Display(struct Array arr){
+    int i;
+    printf("Elements of array are:-");
+    for(i = 0;i<arr.length;i++){
+        printf("%d ",arr.A[i]);
+    }
+    printf("\n");
+}
+
+int main(){
+    int a =9;
+    struct Array arr ={{1,2,3,4,5,6},20,6};
+    // Add(&arr,a);
+    // insert(&arr,2,10);
+    // delete(&arr,2);
+    // int idx = linear_search(&arr,3);
+    // if(idx != -1){
+    //     printf("Element is found at %d index.", idx);
+    // }
+    // else{
+    //     printf("Element not found.");
+    // }
+    // int idx = Binary_search(&arr,4);
+    // if (idx != -1){
+    //     printf("Element is found at %d index.",idx);
+    // }
+    // else{
+    //     printf("Search unsuccessful.");
+    // }
+    // int ele = get(&arr,2);
+    // printf("%d\n",ele);
+    // set(&arr,2,10);
+    // printf("%d\n",max(&arr));
+    // printf("%d\n",min(&arr));
+    // printf("%d\n",sum(&arr));
+    // printf("%d\n",sum_recursion(&arr,arr.length));
+    // printf("%d\n",Avg(&arr));
+    Display(arr);
+    return 0;
+
+}
