@@ -2,6 +2,8 @@
 
 #include<stdio.h>
 #include<stdlib.h>
+#include <stdbool.h>
+
 struct Array{
     int A[20];
     int size;
@@ -175,6 +177,29 @@ void rotate(struct Array *arr){
     arr->A[arr->length-1]=a;
 }
 
+void insert_in_sort(struct Array *arr,int n){
+    int i;
+    for(i= arr->length-1;i>=0;i--){
+        if(arr->A[i]>=n){
+            arr->A[i+1]=arr->A[i];
+        }
+        else{
+            arr->A[i+1]= n;
+            break;
+        }
+    }
+}
+
+int sort_check(struct Array *arr){
+    int i;
+    for(i = 0; i < arr->length - 1; i++){
+        if(arr->A[i] > arr->A[i+1]){
+            return 0;
+        }
+    }
+    return 1;
+}
+
 
 void Display(struct Array arr){
     int i;
@@ -187,7 +212,7 @@ void Display(struct Array arr){
 
 int main(){
     int a =9;
-    struct Array arr ={{1,2,3,4,5,6},20,6};
+    struct Array arr ={{1,18,30,29,32,56},20,6};
     // Add(&arr,a);
     // insert(&arr,2,10);
     // delete(&arr,2);
@@ -215,7 +240,15 @@ int main(){
     // printf("%d\n",Avg(&arr));
     // reverse(&arr);
     // left_Shift(&arr);
-    rotate(&arr);
+    // rotate(&arr);
+    // insert_in_sort(&arr,27);
+    if (sort_check(&arr)){
+    printf("List is sorted.\n");
+    }
+    else{
+        printf("List is not sorted.\n");
+    }
+
     Display(arr);
     return 0;
     

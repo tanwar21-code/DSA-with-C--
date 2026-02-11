@@ -175,6 +175,19 @@ void rotate(struct Array *arr){
     arr->A[arr->length-1]=a;
 }
 
+void insert_in_sort(struct Array *arr,int n){
+    int i;
+    for(i= arr->length-1;i>=0;i--){
+        if(arr->A[i]>=n){
+            arr->A[i+1]=arr->A[i];
+        }
+        else{
+            arr->A[i+1]= n;
+            break;
+        }
+    }
+}
+
 
 void Display(struct Array arr){
     int i;
@@ -187,7 +200,7 @@ void Display(struct Array arr){
 
 int main(){
     int a =9;
-    struct Array arr ={{1,2,3,4,5,6},20,6};
+    struct Array arr ={{1,18,23,29,32,56},20,6};
     // Add(&arr,a);
     // insert(&arr,2,10);
     // delete(&arr,2);
@@ -215,7 +228,8 @@ int main(){
     // printf("%d\n",Avg(&arr));
     // reverse(&arr);
     // left_Shift(&arr);
-    rotate(&arr);
+    // rotate(&arr);
+    // insert_in_sort(&arr,27);
     Display(arr);
     return 0;
     
