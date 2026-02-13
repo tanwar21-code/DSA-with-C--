@@ -311,48 +311,169 @@ void Display(struct Array arr){
 }
 
 int main(){
-    int a =9;
-    struct Array arr1 ={{1,2,3,4,5},20,5};
-    struct Array arr2 ={{6,7,8,9,10},20,5};
-    // Add(&arr,a);
-    // insert(&arr,2,10);
-    // delete(&arr,2);
-    // int idx = linear_search(&arr,3);
-    // if(idx != -1){
-    //     printf("Element is found at %d index.", idx);
-    // }
-    // else{
-    //     printf("Element not found.");
-    // }
-    // int idx = Binary_search(&arr,4);
-    // if (idx != -1){
-    //     printf("Element is found at %d index.",idx);
-    // }
-    // else{
-    //     printf("Search unsuccessful.");
-    // }
-    // int ele = get(&arr,2);
-    // printf("%d\n",ele);
-    // set(&arr,2,10);
-    // printf("%d\n",max(&arr));
-    // printf("%d\n",min(&arr));
-    // printf("%d\n",sum(&arr));
-    // printf("%d\n",sum_recursion(&arr,arr.length));
-    // printf("%d\n",Avg(&arr));
-    // reverse(&arr);
-    // left_Shift(&arr);
-    // rotate(&arr);
-    // insert_in_sort(&arr,27);
-    // if (sort_check(&arr)){
-    // printf("List is sorted.\n");
-    // }
-    // else{
-    //     printf("List is not sorted.\n");
-    // }
-    // negative_on_left(&arr);
-    struct Array *arr3;
-    // arr3 = merge(&arr1,&arr2);
-    Display(*arr3);
-    return 0;
-    
+    struct Array arr = {{0},20,0};
+    struct Array arr2 = {{0},20,0};
+    struct Array *res = NULL;
+
+    int choice,val,index,key,n,i;
+
+    while(1){
+        printf("\n====== ARRAY ADT MENU ======\n");
+        printf("1  Add\n");
+        printf("2  Insert\n");
+        printf("3  Delete\n");
+        printf("4  Display\n");
+        printf("5  Linear Search\n");
+        printf("6  Binary Search (sorted)\n");
+        printf("7  Get\n");
+        printf("8  Set\n");
+        printf("9  Max\n");
+        printf("10 Min\n");
+        printf("11 Sum\n");
+        printf("12 Average\n");
+        printf("13 Reverse (extra array)\n");
+        printf("14 Reverse (swap)\n");
+        printf("15 Left Shift\n");
+        printf("16 Rotate\n");
+        printf("17 Insert in Sorted\n");
+        printf("18 Check Sorted\n");
+        printf("19 Negatives on Left\n");
+        printf("20 Create Second Array\n");
+        printf("21 Merge (sorted arrays)\n");
+        printf("22 Union\n");
+        printf("23 Intersection\n");
+        printf("24 Difference (A-B)\n");
+        printf("0  Exit\n");
+        printf("Enter choice: ");
+        scanf("%d",&choice);
+
+        switch(choice){
+
+        case 1:
+            printf("Value: ");
+            scanf("%d",&val);
+            Add(&arr,val);
+            break;
+
+        case 2:
+            printf("Index Value: ");
+            scanf("%d%d",&index,&val);
+            insert(&arr,index,val);
+            break;
+
+        case 3:
+            printf("Index: ");
+            scanf("%d",&index);
+            printf("Deleted = %d\n", delete(&arr,index));
+            break;
+
+        case 4:
+            Display(arr);
+            break;
+
+        case 5:
+            printf("Key: ");
+            scanf("%d",&key);
+            printf("Index = %d\n", linear_search(&arr,key));
+            break;
+
+        case 6:
+            printf("Key: ");
+            scanf("%d",&key);
+            printf("Index = %d\n", Binary_search(&arr,key));
+            break;
+
+        case 7:
+            printf("Index: ");
+            scanf("%d",&index);
+            printf("Value = %d\n", get(&arr,index));
+            break;
+
+        case 8:
+            printf("Index Value: ");
+            scanf("%d%d",&index,&val);
+            set(&arr,index,val);
+            break;
+
+        case 9:
+            printf("Max = %d\n", max(&arr));
+            break;
+
+        case 10:
+            printf("Min = %d\n", min(&arr));
+            break;
+
+        case 11:
+            printf("Sum = %d\n", sum(&arr));
+            break;
+
+        case 12:
+            printf("Average = %d\n", Avg(&arr));
+            break;
+
+        case 13:
+            reverse(&arr);
+            break;
+
+        case 14:
+            reverse2(&arr);
+            break;
+
+        case 15:
+            left_Shift(&arr);
+            break;
+
+        case 16:
+            rotate(&arr);
+            break;
+
+        case 17:
+            printf("Value: ");
+            scanf("%d",&val);
+            insert_in_sort(&arr,val);
+            arr.length++;   // required because your function doesn't update length
+            break;
+
+        case 18:
+            printf(sort_check(&arr) ? "Sorted\n" : "Not Sorted\n");
+            break;
+
+        case 19:
+            negative_on_left(&arr);
+            break;
+
+        case 20:
+            printf("How many elements for second array: ");
+            scanf("%d",&n);
+            arr2.length = 0;
+            for(i=0;i<n;i++){
+                scanf("%d",&val);
+                Add(&arr2,val);
+            }
+            break;
+
+        case 21:
+            res = merge(&arr,&arr2);
+            if(res){ Display(*res); free(res); }
+            break;
+
+        case 22:
+            res = union_(&arr,&arr2);
+            if(res){ Display(*res); free(res); }
+            break;
+
+        case 23:
+            res = intersection(&arr,&arr2);
+            if(res){ Display(*res); free(res); }
+            break;
+
+        case 24:
+            res = difference(&arr,&arr2);
+            if(res){ Display(*res); free(res); }
+            break;
+
+        case 0:
+            return 0;
+        }
+    }
 }
