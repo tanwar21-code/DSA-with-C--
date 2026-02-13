@@ -214,23 +214,25 @@ void negative_on_left(struct Array *arr){
     }
 }
 
-struct Array* merge_arrays(struct Array *arr,struct Array *arr1){
+struct Array* merge(struct Array *arr,struct Array *arr1){
     int i=0,k=0,j=0;
     struct Array *arr3 = (struct Array *)malloc(sizeof(struct Array));
-    while(i<arr->length && j< arr1->length){
-        if(arr->A[i]<arr1->A[j]){
-            arr3->A[k++]=arr->A[i++];
+    if(!arr3) return NULL;
+    arr3->size = arr->size + arr1->size;
+    while(i < arr->length && j < arr1->length){
+        if(arr->A[i] < arr1->A[j]){
+            arr3->A[k++] = arr->A[i++];
+        } else {
+            arr3->A[k++] = arr1->A[j++];
         }
-        else{
-            arr3->A[k++]=arr1->A[j++];
-        }
     }
-    for(;i<arr->length;i++){
-        arr3->A[k++]=arr->A[i];
+    for(; i < arr->length; i++){
+        arr3->A[k++] = arr->A[i];
     }
-    for(;j<arr1->length;j++){
-        arr3->A[k++]=arr1->A[j];
+    for(; j < arr1->length; j++){
+        arr3->A[k++] = arr1->A[j];
     }
+    arr3->length = k;
     return arr3;
 }
 
